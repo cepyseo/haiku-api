@@ -10,14 +10,15 @@
         const model = urlParams.get('model') || 'claude-3-haiku-20240307';
 
         // API URL'sini karıştırılmış şekilde saklama
-        const _0x4f8d=['ness','dark','.dev','chat','rs','/','wor','ke','?','ash','lynn'];
+        const _0x4f8d=['ness','dark','.dev','chat','rs','/','wor','ke','/?','ash','lynn'];
         const _0x3f2d = function(p1, p2) {
             return _0x4f8d[p1];
         };
-        const apiBase = `https://${_0x3f2d(1)}${_0x3f2d(0)}.${_0x3f2d(9)}${_0x3f2d(10)}.${_0x3f2d(6)}${_0x3f2d(7)}${_0x3f2d(4)}${_0x3f2d(2)}${_0x3f2d(5)}${_0x3f2d(3)}${_0x3f2d(8)}`;
+        const apiBase = `https://${_0x3f2d(1)}${_0x3f2d(0)}.${_0x3f2d(9)}${_0x3f2d(10)}.${_0x3f2d(6)}${_0x3f2d(7)}${_0x3f2d(4)}${_0x3f2d(2)}${_0x3f2d(5)}${_0x3f2d(3)}`;
 
         if (prompt) {
-            fetch(`${apiBase}prompt=${encodeURIComponent(prompt)}&model=${encodeURIComponent(model)}`)
+            const finalUrl = `${apiBase}${_0x3f2d(8)}prompt=${encodeURIComponent(prompt)}&model=${encodeURIComponent(model)}`;
+            fetch(finalUrl)
                 .then(response => response.json())
                 .then(data => {
                     delete data.Join;
