@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat API</title>
+</head>
+<body>
+    <script>
+        // URL'den parametreleri al
+        const urlParams = new URLSearchParams(window.location.search);
+        const prompt = urlParams.get('prompt');
+        const model = urlParams.get('model') || 'claude-3-haiku-20240307';
+
+        // Eğer prompt parametresi varsa, API çağrısını yap
+        if (prompt) {
+            fetch(`https://darkness.ashlynn.workers.dev/chat/?prompt=${encodeURIComponent(prompt)}&model=${encodeURIComponent(model)}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.body.textContent = JSON.stringify(data);
+                    // Content-Type header'ını ayarla
+                    document.contentType = 'application/json';
+                })
+                .catch(error => {
+                    document.body.textContent = JSON.stringify({ error: 'An error occurred' });
+                });
+        } else {
+            document.body.textContent = JSON.stringify({ error: 'Prompt parameter is required' });
+        }
+    </script>
+</body>
+</html>
